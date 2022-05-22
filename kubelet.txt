@@ -1,3 +1,8 @@
+1) Registering the Node
+2) Create PODs
+3) Monitering the POD and Node
+
+
 Hello and welcome to this lecture. In this lecture
 
 we will look at kubelet.
