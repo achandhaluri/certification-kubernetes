@@ -1,0 +1,116 @@
+Hello and welcome to this lecture in this lecture.
+
+In this lecture we will talk about the Kube-API server in kubernetes.
+
+Earlier we discussed that the Kube-api server is the primary management component in kubernetes. When
+
+you run a kubectl command, the kubectl utility is infact reaching to the kube-apiserver.
+
+The kube-api server first authenticates the request and validates it. It then retrieves the data from the
+
+ETCD cluster and responds back with the requested information.
+
+You don’t really need to use the kubectl command line.
+
+Instead, you could also invoke the API directly by sending a post request like this let's look at an
+
+example of creating a pod when you do that as before the request is authenticated first and then validated.
+
+In this case, the API server creates a POD object without assigning it to a node, updates the information
+
+in the ETCD server updates the user that the POD has been created.
+
+The scheduler continuously monitors the API server and realizes that there is a new pod with no node
+
+assigned the scheduler identifies the right node to place the new POD on and communicates that back
+
+to the kube-apiserver.
+
+The API server then updates the information in the ETCD cluster. The API server then passes that information
+
+to the kubelet in appropriate worker node.
+
+The kubelet then creates the POD on the node and instructs the container runtime engine to deploy the
+
+application image.
+
+Once done, the kubelet updates the status back to the API server and the API server then updates the
+
+data back in the ETCD cluster. A similar pattern is followed every time a change is requested.
+
+The kube-apiserver is at the center of all the different tasks that needs to be performed to make a
+
+change in the cluster.
+
+To summarize, the kube-api server is responsible for Authenticating and validating requests, retrieving
+
+and updating data in ETCD data store,
+
+in fact, kube-api server is the only component that interacts directly with the etcd datastore.
+
+The other components such as the scheduler, kube-controller-manager & kubelet
+
+uses the API server to perform updates in the cluster in their respective areas.
+
+If you bootstrapped your cluster using kubeadm tool then you don't need to know this but if you are
+
+setting up the hard way, then kube-apiserver is available as a binary in the kubernetes release
+
+page. Download it and configure it to run as a service on your kubernetes master node.
+
+The kube-api server is run with a lot of parameters as you can see here. Throughout this section
+
+we are going to take a peak at how to install and configure these individual components of the kubernetes
+
+architecture.
+
+You don't have to understand all of the options right now but I think having a high level understanding
+
+on some of these now will make it easier later when we configure the whole cluster and all of its components
+
+from scratch.
+
+The kubernetes architecture consists of a lot of different components working with each other, talking
+
+to each other in many different ways so they all need to know where the other components are.
+
+There are different modes of authentication, authorization, encryption and security. And that’s why you
+
+have so many options when we go through the relevant section in the course we will pull up this file
+
+and look at the relevant options.
+
+For now we will look at a few important ones.
+
+A lot of them are certificates that are used to secure the connectivity between different components.
+
+We look at these certificates in more detail when we go through the SSL/TLS certificates lecture later
+
+in this course.
+
+There is a whole section just for it. So we will get rid of them for now.
+
+But just remember all of the various components we are going to look at in this section will have certificates
+
+associated with them. The option ETCD-servers is where you specify the location of the ETCD servers.
+
+This is how the kube-api server connects to the etcd servers.
+
+So how do you view the kube-api server options in an existing cluster
+
+It depends on how you set up your cluster.
+
+. If you set it up with kubeadm tool, kubeadm deploys the kube-api server as a pod in the kube-
+
+system namespace on the master node you can see the options within the pod definition file located at
+
+etc kubernetes manifests folder. etc kubernetes manifests folder.
+
+kube-apiserver service located at /etc/systemd/system/kube-apiserver.service.You can also see
+
+the running process and the effective options by listing the process on the master node and searching
+
+for kube-apiserver.
+
+Well that's it for this lecture.
+
