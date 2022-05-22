@@ -1,0 +1,112 @@
+Hello and welcome to this lecture in this lecture.
+
+we will talk about Kube Scheduler.
+
+Earlier we discussed that the kubernetes scheduler is responsible for scheduling pods on nodes.
+
+Now don't let the graphic mislead you.
+
+remember the scheduler is only responsible for deciding which pod goes on which node. It doesn’t actually
+
+place the pod on the nodes.
+
+That’s the job of the kubelet. The kubelet or the captain on the ship is who creates the pod on the
+
+ships.
+
+The scheduler only decides which pod goes where.
+
+Let's look at how the scheduler does that in a bit more detail.
+
+First of all why do you need a scheduler? When there are many ships and many containers,
+
+You want to make sure that the right container ends up on the right ship.
+
+For example there could be different sizes of ships and containers.
+
+You want to make sure the ship has sufficient capacity to accommodate those containers different ships
+
+maybe going to different destinations.
+
+You want to make sure your containers are placed on the right ships so they end up in the right destination
+
+In kubernetes, the scheduler decides which nodes the pods are placed on
+
+depending on certain criteria. You may have PODs with different resource requirements,
+
+You can have nodes in the cluster dedicated to certain applications.
+
+So how does the scheduler assign these PODs? The scheduler looks at each POD and tries to find the
+
+best node for it.
+
+For example, let’s take one of these PODs.
+
+The big blue one. It has a set of CPU and Memory requirements.
+
+The scheduler goes through two phases to identify the best node for the pod in the first phase.
+
+The scheduler tries to filter out the nodes that do not fit the profile for this pod.
+
+For example, the nodes that do not have sufficient CPU and memory resources requested by the pod.
+
+So the first two small nodes are filtered out. So we are now left with two nodes on which the POD
+
+can be placed.
+
+Now how does the scheduler pick one from the two the scheduler ranks the node to identify the best fit
+
+for the pod.
+
+It uses a priority function to assign a score to the nodes on a scale of 0 to 10.
+
+For example the scheduler calculates the amount of resources that would be free on the nodes after placing
+
+the pod on them.
+
+In this case, the one on the right would have 6 CPUs free if the pod was placed on it which is 4 more
+
+than the other one so it gets a better rank.
+
+And so it wins.
+
+So that's how a scheduler works at a high level.
+
+And of course these can be customized and you can write your own scheduler as well.
+
+There are many more topics to look at such as resource requirements, limits, taints and tolerations,
+
+node selectors, affinity rules etc. Which is why we have an entire section dedicated to scheduling coming
+
+up in this course where we will discuss each of these in much more detail.
+
+For now we will continue to focus on the scheduler as a process at a high level.
+
+So how do you install the kube-scheduler?
+
+Download the kube-scheduler from the kubernetes release page. Extract it and run it as a service.
+
+when you run it as a service.
+
+You specify the scheduler configuration file.
+
+So how do you view the kube-scheduler server options?
+
+Again, if you set it up with kubeadm tool, kubeadm deploys the kube-scheduler as a pod
+
+in the kube-system namespace
+
+on the master node. You can see the options within the pod definition file located at etc
+
+kubernetes manifests folder.
+
+You can also see the running process and the effective options by listing the process on the master
+
+node and searching for kube-scheduler.
+
+Well that's it for this lecture.
+
+I will see you in the next.
+
+About this course
+Prepare for the Certified Kubernetes Administrators Certification with live practice
