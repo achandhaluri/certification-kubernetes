@@ -15,3 +15,4 @@ Link: https://uklabs.kodekloud.com/courses/labs-certified-kubernetes-administrat
 
 Apply the coupon code udemystudent151113
 
+https://kodekloud.com/topic/practice-test-introduction-3/
