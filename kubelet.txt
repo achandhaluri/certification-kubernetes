@@ -1,0 +1,48 @@
+Hello and welcome to this lecture. In this lecture
+
+we will look at kubelet.
+
+Earlier we discussed that the kubelet is like the captain on the ship. They lead all activities on
+
+a ship.
+
+They're the ones responsible for doing all the paperwork necessary to become part of the cluster,
+
+They're the sole point of contact from the master ship.
+
+They load or unload containers on the ship as instructed by the scheduler on the master.
+
+They also send back reports at regular intervals on the status of the ship and the containers on them.
+
+The kubelet in the kubernetes worker node, registers the node with the kubernetes cluster.
+
+When it receives instructions to load a container or a POD on the node, it requests the container run time
+
+engine, which may be Docker, to pull the required image and run an instance.
+
+The kubelet then continues to monitor the state of the POD and the containers in it and reports to the kube-api
+
+server on a timely basis.
+
+So how do you install the kubelet? If you use kubeadm tool to deploy your cluster, it does not
+
+automatically deploy the kubelet.
+
+Now that's the difference from the other components.
+
+You must always manually install the kubelet on your worker nodes. Download the installer, extract
+
+it and run it as a service.
+
+You can view the running kubelet process and the effective options by listing the process on the worker
+
+node and searching for kubelet.
+
+We will look more into kubelets, how to configure kubelets, generate certificates, and finally how
+
+to TLS bootstrap kubelets later in this course.
+
+That's it for now.
+
+Will see you in the next lecture.
+
