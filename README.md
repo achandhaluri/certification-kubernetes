@@ -37,7 +37,7 @@ Use the above two in combination to generate a resource definition file quickly,
 
 
 
-POD
+#POD
 Create an NGINX Pod
 
 kubectl run nginx --image=nginx
@@ -114,3 +114,9 @@ Reference:
 https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands
 
 https://kubernetes.io/docs/reference/kubectl/conventions/
+
+
+------------------------------------------------------------------------------------
+Practice Test - Manual Scheduling
+Practice Test: https://uklabs.kodekloud.com/topic/practice-test-manual-scheduling-2/
+------------------------------------------------------------------------------------
